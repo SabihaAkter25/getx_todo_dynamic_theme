@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import '../controller/todoController.dart';
 import 'dialoguebox.dart';
 
  final TextController = TextEditingController();
- InkWell buildInkWell() {
+final todoController = Get.put(TodoController());
+
+InkWell buildInkWell() {
 
   return InkWell(
     onTap: () {
@@ -17,6 +20,9 @@ import 'dialoguebox.dart';
        Get.back();
      },
      onSave: (){
+       todoController.postTodos(TextController.text);
+       Get.back();
+       TextController.clear();
        print(TextController.text);
      },
    ),
